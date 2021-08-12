@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewControllerTest {
 
-	@GetMapping("/auth/signup")
+/*	@GetMapping("/auth/signup")
 	public String signupPage() {
 		return "auth/signup";
 	}
@@ -39,5 +39,5 @@ public class ViewControllerTest {
 	@GetMapping("/user/update")
 	public String updatePage() {
 		return "user/update";
-	}
+	}*/
 }

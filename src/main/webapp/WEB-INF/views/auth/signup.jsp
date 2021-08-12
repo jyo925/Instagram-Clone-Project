@@ -26,7 +26,7 @@
                          <!--로고end-->
                          
                          <!--회원가입 인풋-->
-                        <form class="login__input" >
+                        <form class="login__input" action="/auth/signup" method="post">
                             <input type="text" name="username" placeholder="유저네임" required="required" />
                             <input type="password" name="password" placeholder="패스워드" required="required" />
                             <input type="email" name="email" placeholder="이메일" required="required" />
