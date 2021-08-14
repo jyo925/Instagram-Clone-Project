@@ -29,6 +29,5 @@ public class SignupDto {
                 .email(email)
                 .name(name)
                 .build();
-
     }
 }

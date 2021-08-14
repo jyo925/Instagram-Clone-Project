@@ -4,4 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 //JpaRepository를 상속하면 자동으로 IOC
 public interface UserRepository extends JpaRepository<User, Integer> {
+
+    //JPA 쿼리메서드
+    User findByUsername(String username);
 }
