@@ -19,5 +19,5 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, Integer> {
     @Query(value = "DELETE FROM subscribe WHERE fromUserId = :fromUserId AND toUserId = :toUserId", nativeQuery = true)
     void mUnSubscribe(int fromUserId, int toUserId);
 
-    
+
 }

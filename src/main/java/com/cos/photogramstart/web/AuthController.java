@@ -28,7 +28,6 @@ public class AuthController {
     private final AuthService authService;
 
 
-
     @GetMapping("/auth/signin")
     public String signinForm() {
         return "auth/signin";
@@ -52,12 +51,10 @@ public class AuthController {
                 errorMap.put(error.getField(), error.getDefaultMessage());
             }
             throw new CustomValidationException("유효성 검사 실패", errorMap);
-        }else{
+        } else {
             User user = signupDto.toEntity();
             User userEntity = authService.join(user);
         }
-
-
 
 
         return "auth/signin"; //로그인 페이지로 이동

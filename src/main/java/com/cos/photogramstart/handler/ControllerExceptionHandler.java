@@ -1,5 +1,7 @@
 package com.cos.photogramstart.handler;
 
+import com.cos.photogramstart.handler.ex.CustomApiException;
+import com.cos.photogramstart.handler.ex.CustomException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.util.Script;
@@ -22,16 +24,33 @@ public class ControllerExceptionHandler {
         return new CMRespDto<Map<String, String>>(-1, e.getMessage(), e.getErrorMap());
     }*/
 
-//    1.클라이언트에게 응답할 때는 아래와 같이 스크립트로 응답하는게 좋음
+    //    1.클라이언트에게 응답할 때는 아래와 같이 스크립트로 응답하는게 좋음
 //    2.Ajax 또는 Android 통신은 CMRespDto로 받는게 좋음
     @ExceptionHandler(CustomValidationException.class)
     public String validationException(CustomValidationException e) {
-        return Script.back(e.getErrorMap().toString());
+
+        if (e.getErrorMap() == null) {
+            return Script.back(e.getMessage());
+        } else {
+            return Script.back(e.getErrorMap().toString());
+        }
+
     }
 
     //상태코드가 있어야 ajax에서 성공과 실패를 구분하기 때문
     @ExceptionHandler(CustomValidationApiException.class)
     public ResponseEntity<CMRespDto<?>> validationApiException(CustomValidationApiException e) {
         return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(CustomApiException.class)
+    public ResponseEntity<CMRespDto<?>> apiException(CustomApiException e) {
+        return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomException.class)
+    public String exception(CustomException e) {
+        return Script.back(e.getMessage());
     }
 }

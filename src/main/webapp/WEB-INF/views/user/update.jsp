@@ -23,75 +23,75 @@
 
             <!--프로필 수정-->
             <form id="profileUpdate" onsubmit="update(${principal.user.id}, event)">
-            <div class="content-item__02">
-                <div class="item__title">이름</div>
-                <div class="item__input">
-                    <input type="text" name="name" placeholder="이름"
-                           value="${principal.user.name}" required/>
+                <div class="content-item__02">
+                    <div class="item__title">이름</div>
+                    <div class="item__input">
+                        <input type="text" name="name" placeholder="이름"
+                               value="${principal.user.name}" required/>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__03">
-                <div class="item__title">유저네임</div>
-                <div class="item__input">
-                    <input type="text" name="username" placeholder="유저네임"
-                           value="${principal.user.username}" readonly="readonly"/>
+                <div class="content-item__03">
+                    <div class="item__title">유저네임</div>
+                    <div class="item__input">
+                        <input type="text" name="username" placeholder="유저네임"
+                               value="${principal.user.username}" readonly="readonly"/>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__04">
-                <div class="item__title">패스워드</div>
-                <div class="item__input">
-                    <input type="password" name="password" placeholder="패스워드" required/>
+                <div class="content-item__04">
+                    <div class="item__title">패스워드</div>
+                    <div class="item__input">
+                        <input type="password" name="password" placeholder="패스워드" required/>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__05">
-                <div class="item__title">웹사이트</div>
-                <div class="item__input">
-                    <input type="text" name="website" placeholder="웹 사이트"
-                           value="${principal.user.website}"/>
+                <div class="content-item__05">
+                    <div class="item__title">웹사이트</div>
+                    <div class="item__input">
+                        <input type="text" name="website" placeholder="웹 사이트"
+                               value="${principal.user.website}"/>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__06">
-                <div class="item__title">소개</div>
-                <div class="item__input">
-						<textarea name="bio" id="" rows="3">${principal.user.bio}</textarea>
+                <div class="content-item__06">
+                    <div class="item__title">소개</div>
+                    <div class="item__input">
+                        <textarea name="bio" id="" rows="3">${principal.user.bio}</textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__07">
-                <div class="item__title"></div>
-                <div class="item__input">
-                    <span><b>개인정보</b></span> <span>비즈니스나 반려동물 등에 사용된 계정인 경우에도
+                <div class="content-item__07">
+                    <div class="item__title"></div>
+                    <div class="item__input">
+                        <span><b>개인정보</b></span> <span>비즈니스나 반려동물 등에 사용된 계정인 경우에도
 							회원님의 개인 정보를 입력하세요. 공개 프로필에는 포함되지 않습니다.</span>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__08">
-                <div class="item__title">이메일</div>
-                <div class="item__input">
-                    <input type="text" name="email" placeholder="이메일"
-                           value="${principal.user.email}" readonly="readonly"/>
+                <div class="content-item__08">
+                    <div class="item__title">이메일</div>
+                    <div class="item__input">
+                        <input type="text" name="email" placeholder="이메일"
+                               value="${principal.user.email}" readonly="readonly"/>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__09">
-                <div class="item__title">전회번호</div>
-                <div class="item__input">
-                    <input type="text" name="phone" placeholder="전화번호"
-                           value="${principal.user.phone}"/>
+                <div class="content-item__09">
+                    <div class="item__title">전회번호</div>
+                    <div class="item__input">
+                        <input type="text" name="phone" placeholder="전화번호"
+                               value="${principal.user.phone}"/>
+                    </div>
                 </div>
-            </div>
-            <div class="content-item__10">
-                <div class="item__title">성별</div>
-                <div class="item__input">
-                    <input type="text" name="gender" value="${principal.user.gender}"/>
+                <div class="content-item__10">
+                    <div class="item__title">성별</div>
+                    <div class="item__input">
+                        <input type="text" name="gender" value="${principal.user.gender}"/>
+                    </div>
                 </div>
-            </div>
 
-            <!--제출버튼-->
-            <div class="content-item__11">
-                <div class="item__title"></div>
-                <div class="item__input">
-                    <button >제출</button>
+                <!--제출버튼-->
+                <div class="content-item__11">
+                    <div class="item__title"></div>
+                    <div class="item__input">
+                        <button>제출</button>
+                    </div>
                 </div>
-            </div>
-            <!--제출버튼end-->
+                <!--제출버튼end-->
 
             </form>
             <!--프로필수정 form end-->

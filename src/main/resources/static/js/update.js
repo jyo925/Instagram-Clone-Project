@@ -13,7 +13,7 @@ function update(userId, event) {
         dataType: "json"
     }).done(res => {
         console.log("update 성공", res);
-        location.href =`/user/${userId}`;
+        location.href = `/user/${userId}`;
     }).fail(error => {
         if (error.data == null) {
             alert(error.responseJSON.message);
