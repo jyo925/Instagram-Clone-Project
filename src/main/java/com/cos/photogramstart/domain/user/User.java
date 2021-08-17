@@ -1,10 +1,9 @@
 package com.cos.photogramstart.domain.user;
 
 import com.cos.photogramstart.domain.image.Image;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
+@ToString(exclude = "images")
 public class User {
 
     @Id
@@ -40,6 +40,7 @@ public class User {
     //mappedBy란, 나는 연관관계의 주인이 아니다.
     //그러므로 테이블에 컬럼을 생성X & Usre select 시 해당 User id로 등록된 image를 모두 가져온다.
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"}) //image를 json으로 파싱하기 위해 getter로 호출할 때 user필드를 제외
     private List<Image> images;
 
 
