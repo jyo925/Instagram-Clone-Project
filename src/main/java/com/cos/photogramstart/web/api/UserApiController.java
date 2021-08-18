@@ -54,7 +54,7 @@ public class UserApiController {
     }
 
     //특정 유저를 구독하고 있는 목록
-    @GetMapping("/api/usre/{pageUserId}/subscribe")
+    @GetMapping("/api/user/{pageUserId}/subscribe")
     public ResponseEntity<?> subscribeList(@PathVariable int pageUserId,
                                            @AuthenticationPrincipal PrincipalDetails principalDetails){
         List<SubscribeDto> subscribeDtos =

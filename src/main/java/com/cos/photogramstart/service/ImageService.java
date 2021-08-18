@@ -6,6 +6,8 @@ import com.cos.photogramstart.domain.image.ImageRepository;
 import com.cos.photogramstart.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +34,7 @@ public class ImageService {
 
 //        System.out.println("imageFileName = " + imageFileName);
 
-        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+        Path imageFilePath = Paths.get(uploadFolder + imageFileName);
 //        System.out.println("imageFilePath = " + imageFilePath);
 //        System.out.println(imageUploadDto.getFile());
         //통신 or 입출력이 일어나는 경우는 예외가 발생할 수 있다.
@@ -47,5 +49,11 @@ public class ImageService {
         //DB 저장
         Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
         imageRepository.save(image);
+    }
+
+
+    @Transactional(readOnly = true)
+    public Page<Image> imageStory(int principalId, Pageable pageable) {
+        return imageRepository.mStory(principalId, pageable);
     }
 }

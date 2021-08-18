@@ -1,6 +1,7 @@
 package com.cos.photogramstart.domain.image;
 
 import com.cos.photogramstart.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Image {
     private String caption; //설명
     private String postImageUrl; //사진을 전송 받아서 서버 내 폴더에 저장할 예정, DB에는 저장 경로를 insert
 
+    @JsonIgnoreProperties({"images"})
     @JoinColumn(name = "userId")
     @ManyToOne
     private User user;
