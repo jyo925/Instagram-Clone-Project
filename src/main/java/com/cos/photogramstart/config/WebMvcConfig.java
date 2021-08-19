@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
 //Web 설정 파일
+//스프링 기능 확장은 WebMvcConfigurer를 구현하면 된다.
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 

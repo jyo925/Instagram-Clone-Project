@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -56,12 +57,23 @@ public class UserApiController {
     //특정 유저를 구독하고 있는 목록
     @GetMapping("/api/user/{pageUserId}/subscribe")
     public ResponseEntity<?> subscribeList(@PathVariable int pageUserId,
-                                           @AuthenticationPrincipal PrincipalDetails principalDetails){
+                                           @AuthenticationPrincipal PrincipalDetails principalDetails) {
         List<SubscribeDto> subscribeDtos =
                 subScribeService.subscribeList(principalDetails.getUser().getId(), pageUserId);
 
         return new ResponseEntity<>(new CMRespDto<>(1, "구독자 정보 리스트 불러오기 성공", subscribeDtos), HttpStatus.OK);
     }
 
+    //유저 프로필 사진 변경
+    //MultipartFile 파라미터로 받을 때 form input 태그의 name값으로 파라미터명 설정 주의
+    @PutMapping("/api/user/{principalId}/profileImageUrl")
+    public ResponseEntity<?> profileImageUrlUpdate(@PathVariable int principalId,
+                                                   MultipartFile profileImageFile,
+                                                   @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        User userEntity = userService.userProfileUpdate(principalId, profileImageFile);
+        //회원 정보가 변경됐으므로 세션값도 변경해야 함
+        principalDetails.setUser(userEntity);
+        return new ResponseEntity<>(new CMRespDto<>(1, "회원 프로필 사진 변경 성공", null), HttpStatus.OK);
+    }
 }
 

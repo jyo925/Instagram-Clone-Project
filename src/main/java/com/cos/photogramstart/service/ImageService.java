@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -54,6 +55,29 @@ public class ImageService {
 
     @Transactional(readOnly = true)
     public Page<Image> imageStory(int principalId, Pageable pageable) {
-        return imageRepository.mStory(principalId, pageable);
+        //스토리 정보
+        Page<Image> images = imageRepository.mStory(principalId, pageable);
+
+        //좋아요 정보
+        //이미지를 가져올 때 좋아요 정보도 들고오려면 양방향 매핑으로
+        //해당 이미지에 좋아요 정보를 모두 들고와서 현재 로그인한 사용자가 좋아요를 눌렀는지 확인
+        images.forEach(i -> {
+
+            i.setLikeCount(i.getLikes().size());
+
+            i.getLikes().forEach(like -> {
+                if (like.getUser().getId() == principalId) {
+                    i.setLikeState(true);
+                }
+            });
+        });
+
+        return images;
+
+    }
+
+    @Transactional(readOnly = true)
+    public List<Image> popularImages() {
+        return imageRepository.mPopular();
     }
 }
