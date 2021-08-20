@@ -25,7 +25,7 @@
 
                     <!--로그인 인풋-->
                     <form class="login__input" action="/auth/signin" method="post">
-                        <input type="text" name="username" placeholder="유저네임" required="required"/>
+                        <input type="text" name="username" placeholder="사용자 이름" required="required"/>
                         <input type="password" name="password" placeholder="비밀번호" required="required"/>
                         <button>로그인</button>
                     </form>
@@ -47,12 +47,18 @@
                         </button>
                     </div>
                     <!-- Oauth 소셜로그인end -->
+
+                    <div class="login__horizon">
+                        <div class="or" style=" height: 40px; width: 500px;">
+                            비밀번호를 잊으셨나요?
+                        </div>
+                    </div>
                 </div>
 
                 <!--계정이 없으신가요?-->
                 <div class="login__register">
                     <span>계정이 없으신가요?</span>
-                    <a href="/auth/signup">가입하기</a>
+                    <a href="/auth/signup"><b>가입하기</b></a>
                 </div>
                 <!--계정이 없으신가요?end-->
             </article>

@@ -30,10 +30,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     //권한은 Collection type
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         Collection<GrantedAuthority> collector = new ArrayList<>();
         collector.add(() -> user.getRole());
-
         return null;
     }
 

@@ -37,6 +37,7 @@ public class Image {
     @Transient //DB에 컬럼 생성X
     private boolean likeState;
 
+    //DB 테이블 X
     @Transient
     private int likeCount;
 

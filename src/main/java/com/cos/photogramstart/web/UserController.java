@@ -20,10 +20,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/user/{pageUserId}")
-    public String profile(@PathVariable int pageUserId, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public String profile(@PathVariable int pageUserId,
+                          Model model,
+                          @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        //회원 프로필 페이지는 이미지 정보뿐만 아니라 회원정보, 구독정보도 필요 -> UserProfileDto 사용
         UserProfileDto dto = userService.userProfile(pageUserId, principalDetails.getUser().getId());
         model.addAttribute("dto", dto);
-        //회원 프로필 페이지는 이미지 정보뿐만 아니라 회원정보, 구독정보도 필요하다.
 
         return "user/profile";
     }
@@ -34,7 +36,6 @@ public class UserController {
 
         log.info(String.valueOf(principalDetails.getUser()));
 
-//        model.addAttribute("principal", principalDetails.getUser());
         return "user/update";
     }
 }

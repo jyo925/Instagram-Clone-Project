@@ -2,9 +2,6 @@ package com.cos.photogramstart.web.dto.auth;
 
 import com.cos.photogramstart.domain.user.User;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 

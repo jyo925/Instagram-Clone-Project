@@ -23,10 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -43,12 +40,12 @@ public class UserApiController {
                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
         User userEntity = userService.update(id, userUpdateDto.toEntity());
-        principalDetails.setUser(userEntity);
+        principalDetails.setUser(userEntity); //세션 유저 정보 업데이트
         return new CMRespDto<>(1, "회원 수정 완료", userEntity);
 
     }
 
-    //특정 유저를 구독하고 있는 목록
+
     @GetMapping("/api/user/{pageUserId}/subscribe")
     public ResponseEntity<?> subscribeList(@PathVariable int pageUserId,
                                            @AuthenticationPrincipal PrincipalDetails principalDetails) {

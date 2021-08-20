@@ -35,7 +35,6 @@ public class UserService {
     @Value("${file.path}")
     private String uploadFolder;
 
-
     @Transactional(readOnly = true)
     public UserProfileDto userProfile(int pageUserId, int principalId) {
 
@@ -43,7 +42,6 @@ public class UserService {
 
         User userEntity = userRepository.findById(pageUserId)
                 .orElseThrow(() -> new CustomException("해당 프로필 페이지는 없는 페이지입니다."));
-
 
         dto.setUser(userEntity);
         dto.setPageOwnerState(pageUserId == principalId); //1은 페이지 주인, -1은 주인 아님
@@ -59,19 +57,13 @@ public class UserService {
             i.setLikeCount(i.getLikes().size());
         });
 
-        //이미지 정보 역순으로 = 최신 사진이 가장 먼저 보이도록
-        //그런데 여기서 변경해봤자 지연로딩이기 때문에 결국 뷰단에서 getImage()가 호출될때 이 로직을 한 번 또 탐
-        //JPA가 자동으로 쿼리를 수행하는거라....desc순으로 어떻게 보여지게 해야할지 궁금함
-        List<Image> images = dto.getUser().getImages();
-        images.forEach(i -> {
-            log.info(String.valueOf(i.getId()));
-        });
-        log.info("-----------------------역순으로 변경 ----------------------------");
+        /*
+        //인스타에서는 최신 사진이 가장 앞에 나오는 것을 보고 개인적으로 수정한 코드
+        //프로필 페이지에서 최신 사진이 가장 먼저 보이도록 변경
+        //게시물 수가 엄청 많아지면 비효율적이지 않은지 고민 필요 ==> @OrderBy("id DESC")를 사용해서 해결!
+       List<Image> images = dto.getUser().getImages();
         Collections.reverse(images);
-        images.forEach(i -> {
-            log.info(String.valueOf(i.getId()));
-        });
-        dto.getUser().setImages(images);
+        dto.getUser().setImages(images);*/
 
         return dto;
     }
@@ -80,24 +72,16 @@ public class UserService {
     public User update(int id, User user) {
 
         //1. 영속화
-        //Optional 타입으로 리턴 받는데
-        //1.get()은 무조건 찾았다고 가정
-        //2.orElseThrow() 못찾은 경우 예외 발생
-        //예외 처리는 추후 처리할 예정으로 우선 get으로 진행
- /*       User userEntity = userRepository.findById(id).orElseThrow(
-                new Supplier<IllegalArgumentException>() {
-                    @Override
-                    public IllegalArgumentException get() {
-                        return new IllegalArgumentException("찾을 수 없는 아이디입니다.");
-                    }
-                }
-        );
-*/
-        User userEntity = userRepository.findById(id).orElseThrow(() -> new CustomValidationApiException("찾을 수 없는 아이디입니다."));
+        //Optional 타입으로 리턴 받음
+        //- get()은 무조건 찾았다고 가정
+        //- orElseThrow() 못찾은 경우 예외 발생 => 예외 처리 필요
+
+        User userEntity =
+                userRepository.findById(id)
+                        .orElseThrow(() -> new CustomValidationApiException("찾을 수 없는 아이디입니다."));
 
         //2. 영속화된 오브젝트를 수정하면 DB 자동 update(더티채킹)
         userEntity.setName(user.getName());
-
 
         String rawPassword = user.getPassword();
         String encPassword = encoder.encode(rawPassword);
@@ -108,7 +92,7 @@ public class UserService {
         userEntity.setPhone(user.getPhone());
         userEntity.setGender(user.getGender());
 
-        return userEntity;
+        return userEntity; //컨트롤러로 넘어가면서 더티채킹
     }
 
     @Transactional

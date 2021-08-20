@@ -28,7 +28,6 @@ public class SubScribeService {
         } catch (Exception e) {
             throw new CustomApiException("이미 구독이 되어있습니다.");
         }
-
     }
 
     //구독취소하기

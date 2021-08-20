@@ -24,10 +24,14 @@
                     <!--로고-->
                     <h1><img src="/images/logo.jpg" alt=""></h1>
                     <!--로고end-->
+                    <div class="login__horizon">
+                        <div class="or" style="height: 40px; width: 280px; font-size: 17px;">
+                            <b>친구들의 사진과 동영상을 보려면<br> 가입하세요.</b></div>
+                    </div>
 
                     <!--회원가입 인풋-->
-                    <form class="login__input" action="/auth/signup" method="post"  >
-                        <input type="text" name="username" placeholder="유저네임" maxlength="30" required="required"/>
+                    <form class="login__input" action="/auth/signup" method="post">
+                        <input type="text" name="username" placeholder="아이디" maxlength="30" required="required"/>
                         <input type="password" name="password" placeholder="패스워드" required="required"/>
                         <input type="email" name="email" placeholder="이메일" required="required"/>
                         <input type="text" name="name" placeholder="이름" required="required"/>
