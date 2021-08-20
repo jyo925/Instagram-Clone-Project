@@ -40,7 +40,7 @@ public class CommentService {
                 .orElseThrow(() -> new CustomApiException("해당 유저 아이디를 찾을 수 없습니다."));
 
         Comment comment = new Comment();
-        comment.setComment(content);
+        comment.setContent(content);
         comment.setImage(image);
         comment.setUser(userEntity);
 
@@ -48,7 +48,13 @@ public class CommentService {
     }
 
     @Transactional
-    public void remove() {
-
+    public void remove(int id) {
+        //현재 로직에서는 에러가 발생하지 않지만
+        //추후 기능 확장하면서 에러 발생하면 아래와 같이 처리하기
+        try {
+            commentRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new CustomApiException(e.getMessage());
+        }
     }
 }

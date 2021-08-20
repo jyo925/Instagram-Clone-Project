@@ -44,7 +44,7 @@ public class AuthController {
 
         //@Valid 걸린 객체에서 에러가 발생되면 bindingResult로 오류가 담긴다.
         //파라미터 설정 시 무조건 해당 객체를 먼저 기재
-        if (bindingResult.hasErrors()) {
+/*        if (bindingResult.hasErrors()) {
             Map<String, String> errorMap = new HashMap<>();
 
             for (FieldError error : bindingResult.getFieldErrors()) {
@@ -53,10 +53,10 @@ public class AuthController {
             throw new CustomValidationException("유효성 검사 실패", errorMap);
         } else {
             User user = signupDto.toEntity();
-            User userEntity = authService.join(user);
-        }
-
-
+            authService.join(user);
+        }*/
+        User user = signupDto.toEntity();
+        authService.join(user);
         return "auth/signin"; //로그인 페이지로 이동
     }
 

@@ -20,7 +20,7 @@ public class Comment {
     private int id;
 
     @Column(length = 100, nullable = false)
-    private String comment;
+    private String content;
 
     //작성자
     @JsonIgnoreProperties({"images"})

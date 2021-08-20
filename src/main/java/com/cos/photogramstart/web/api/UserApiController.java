@@ -41,17 +41,11 @@ public class UserApiController {
                                @Valid UserUpdateDto userUpdateDto,
                                BindingResult bindingResult,
                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorMap = new HashMap<>();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            throw new CustomValidationApiException("유효성 검사 실패", errorMap);
-        } else {
-            User userEntity = userService.update(id, userUpdateDto.toEntity());
-            principalDetails.setUser(userEntity);
-            return new CMRespDto<>(1, "회원 수정 완료", userEntity);
-        }
+
+        User userEntity = userService.update(id, userUpdateDto.toEntity());
+        principalDetails.setUser(userEntity);
+        return new CMRespDto<>(1, "회원 수정 완료", userEntity);
+
     }
 
     //특정 유저를 구독하고 있는 목록

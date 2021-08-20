@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //번호 증가 전략을 DB를 따르도록
     private int id;
 
-    @Column(unique = true, length = 20)
+    @Column(unique = true, length = 100) //Oauth username 때문에 길이 늘림
     private String username;
     @Column(nullable = false)
     private String password;

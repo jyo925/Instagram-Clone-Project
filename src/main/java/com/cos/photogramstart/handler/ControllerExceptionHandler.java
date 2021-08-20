@@ -43,12 +43,13 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
     }
 
-
+    //Data 리턴 컨트롤러
     @ExceptionHandler(CustomApiException.class)
     public ResponseEntity<CMRespDto<?>> apiException(CustomApiException e) {
         return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
     }
-
+    
+    //HTML 리턴 컨트롤러
     @ExceptionHandler(CustomException.class)
     public String exception(CustomException e) {
         return Script.back(e.getMessage());
