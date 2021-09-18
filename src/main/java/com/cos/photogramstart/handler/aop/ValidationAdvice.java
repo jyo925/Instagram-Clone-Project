@@ -19,12 +19,12 @@ import java.util.Map;
 @Slf4j
 public class ValidationAdvice {
 
-    //컨트롤러의 특정 메서드가 수행되기 전에 apiAdvice 또는 advice 메서드가 먼저 수행된다.
-    //이때, ProceedingJoinPoint타입의 파라미터는 컨트롤러 메서드의 모든 곳(매개변수, 구현내용, 리턴값 등)에 접근할 수 있는 변수이다.
+    //컨트롤러의 특정 메서드가 수행되기 전에 apiAdvice() 또는 advice() 메서드가 먼저 수행된다.
+    //이때, ProceedingJoinPoint 타입의 파라미터는 컨트롤러 메서드의 모든 곳(매개변수, 구현내용, 리턴값 등)에 접근할 수 있는 변수이다.
     //proceed()를 실행하여 컨트롤러 메서드를 실행한다.
-    //이를 이용해서 Validation
+    //이를 이용해서 Validation을 수행한다. 에러가 없으면 컨트롤러 메서드 호출
 
-    //execution(접근지시자 패키지 클래스 메서드 파라미터)
+    //execution(접근지시자 패키지 클래스 메서드 파라미터) 어디에 적용할지 결정
     @Around("execution(* com.cos.photogramstart.web.api.*Controller.*(..))")
     public Object apiAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 //        log.info("web api 컨트롤러 ==================================");
@@ -37,6 +37,7 @@ public class ValidationAdvice {
 
                 BindingResult bindingResult = (BindingResult) arg; //다운캐스팅
 
+                //바인딩에러에 에러가 담겨있으면 CustomValidationApiException을 던진다.
                 if (bindingResult.hasErrors()) {
                     Map<String, String> errorMap = new HashMap<>();
                     for (FieldError error : bindingResult.getFieldErrors()) {

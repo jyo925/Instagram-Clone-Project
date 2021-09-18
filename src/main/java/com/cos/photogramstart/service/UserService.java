@@ -72,7 +72,7 @@ public class UserService {
     public User update(int id, User user) {
 
         //1. 영속화
-        //Optional 타입으로 리턴 받음
+        // Optional 타입으로 리턴 받음
         //- get()은 무조건 찾았다고 가정
         //- orElseThrow() 못찾은 경우 예외 발생 => 예외 처리 필요
 

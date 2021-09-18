@@ -33,8 +33,6 @@ public class ImageService {
         //uuid + 실제 파일명
         String imageFileName = uuid + "_" + imageUploadDto.getFile().getOriginalFilename();
 
-//        System.out.println("imageFileName = " + imageFileName);
-
         Path imageFilePath = Paths.get(uploadFolder + imageFileName);
 //        System.out.println("imageFilePath = " + imageFilePath);
 //        System.out.println(imageUploadDto.getFile());
@@ -64,16 +62,13 @@ public class ImageService {
         images.forEach(i -> {
 
             i.setLikeCount(i.getLikes().size());
-
             i.getLikes().forEach(like -> {
                 if (like.getUser().getId() == principalId) {
                     i.setLikeState(true);
                 }
             });
         });
-
         return images;
-
     }
 
     @Transactional(readOnly = true)
