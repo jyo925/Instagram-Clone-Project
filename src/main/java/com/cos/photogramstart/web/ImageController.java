@@ -25,6 +25,11 @@ public class ImageController {
         return "image/story";
     }
 
+    @GetMapping("/image/image")
+    public String image(){
+        return "image/image";
+    }
+
     @GetMapping("/image/popular")
     public String popular(Model model) {
         List<Image> images = imageService.popularImages();

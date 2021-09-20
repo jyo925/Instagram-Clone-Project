@@ -29,7 +29,7 @@
                 <h2>${dto.user.name}</h2>
                 <c:choose>
                     <c:when test="${dto.pageOwnerState}">
-                        <button class="cta" onclick="location.href='/image/upload'">사진등록</button>
+                        <button class="cta" onclick="location.href='/image/upload'">업로드</button>
                         <button class="modi" onclick="popup('.modal-info')">
                             <i class="fas fa-cog"></i>
                         </button>
@@ -56,7 +56,11 @@
                     <li><a href=""> 게시물<span>${dto.imageCount}</span>
                     </a></li>
                     <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});">
-                        구독정보<span>${dto.subscribeCount}</span>
+                        팔로잉<span>${dto.subscribeCount}</span>
+                    </a></li>
+<%--                    수정할 부분--%>
+                    <li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});">
+                        팔로워<span>${dto.subscribeCount}</span>
                     </a></li>
                 </ul>
             </div>
@@ -83,10 +87,10 @@
 
                 <c:forEach var="image" items="${dto.user.images}">
                     <div class="img-box">
-                        <a href=""> <img src="/upload/${image.postImageUrl}"/>
+                        <a href="/image/image"> <img src="/upload/${image.postImageUrl}"/>
                         </a>
                         <div class="comment">
-                            <a href="#" class=""> <i class="fas fa-heart"></i><span>${image.likeCount}</span>
+                            <a href="/image/image" class=""> <i class="fas fa-heart"></i><span>${image.likeCount}</span>
                             </a>
                         </div>
                     </div>
@@ -101,7 +105,7 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modalInfo()">
     <div class="modal">
-        <button onclick="location.href='/user/1/update'">회원정보 변경</button>
+        <button onclick="location.href='/user/1/update'">프로필 변경</button>
         <button onclick="location.href='/logout'">로그아웃</button>
         <button onclick="closePopup('.modal-info')">취소</button>
     </div>
@@ -122,7 +126,7 @@
 <div class="modal-subscribe">
     <div class="subscribe">
         <div class="subscribe-header">
-            <span>구독정보</span>
+            <span>팔로잉</span>
             <button onclick="modalClose()">
                 <i class="fas fa-times"></i>
             </button>

@@ -78,9 +78,9 @@ function getSubscribeModalItem(u) {
     //동일 유저가 아닐때 구독취소/구독하기 버튼이 보여진다.
     if (!u.equalUserState) {
         if (u.subscribeState) {
-        item += `<button class="cta blue" onclick="toggleSubscribe(${u.id}, this)">구독취소</button>`
-        }else {
-        item += `<button class="cta" onclick="toggleSubscribe(${u.id}, this)">구독하기</button>`
+            item += `<button class="cta blue" onclick="toggleSubscribe(${u.id}, this)">구독취소</button>`
+        } else {
+            item += `<button class="cta" onclick="toggleSubscribe(${u.id}, this)">구독하기</button>`
         }
     }
 
@@ -169,7 +169,7 @@ function modalInfo() {
 }
 
 // (7) 사용자 프로파일 이미지 메뉴(사진업로드, 취소) 모달
-function modalImage() {
+function modalImage(pageUserId, principalId) {
     $(".modal-image").css("display", "none");
 }
 

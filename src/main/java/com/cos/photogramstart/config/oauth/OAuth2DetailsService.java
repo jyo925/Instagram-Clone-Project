@@ -58,7 +58,6 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             return new PrincipalDetails(userRepository.save(user), oAuth2User.getAttributes());
         } else {
             //기존 회원인 경우
-
             return new PrincipalDetails(userEntity, oAuth2User.getAttributes());
         }
     }

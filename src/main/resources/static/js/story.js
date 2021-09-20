@@ -36,9 +36,9 @@ storyLoad();
 function getStoryItem(image) {
     let item = `<div class="story-list__item">
 <div class="sl__item__header">
-<div>
-<img class="profile-image" src="/upload/${image.user.profileImageUrl}"
-onerror="this.src='/images/person.jpeg'"/>
+<div><a href = "/user/${image.user.id}">
+<img class="profile-image"  src="/upload/${image.user.profileImageUrl}"
+onerror="this.src='/images/person.jpeg'"/></a>
 </div>
 <div>${image.user.username}</div>
 </div>
