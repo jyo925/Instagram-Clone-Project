@@ -28,8 +28,7 @@
 </br>
 
 ## 3. ERD 설계
-![]()
-(첨부예정)
+![image](https://user-images.githubusercontent.com/45502553/134459345-9dab9a1e-1d0e-456e-b005-bd242649cf28.png)
 
 
 ## 4. 핵심 기능
