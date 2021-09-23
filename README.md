@@ -1,95 +1,70 @@
-# 포토그램 - 인스타그램 클론 코딩
+# :pushpin: SNS 클론 코딩
+>인스타그램 클론 코딩<br>
+>기존 게시판을 만들어보면서 좀 더 객체지향 적인 개발을 하고 싶다는 생각이 들어 JPA를 학습해서 사용했으며,<br>
+>스프링 시큐리티와 OAuth2를 사용하여 페이스북 로그인 기능을 구현했습니다.<br>
+>(데모 사이트 URL 추후 등록 예정)
 
-### STS 툴에 세팅하기 - 플러그인 설정
-- https://blog.naver.com/getinthere/222322821611
+</br>
 
-### 의존성
+## 1. 제작 기간 & 참여 인원
+- 2021년 08월 ~ 진행중
+- 추가 기능 구현중
+- 개인 프로젝트
 
-- Sring Boot DevTools
-- Lombok
-- Spring Data JPA
-- MariaDB Driver
-- Spring Security
-- Spring Web
-- oauth2-client
+</br>
 
-```xml
-<!-- 시큐리티 태그 라이브러리 -->
-<dependency>
-	<groupId>org.springframework.security</groupId>
-	<artifactId>spring-security-taglibs</artifactId>
-</dependency>
+## 2. 사용 기술
+#### `Back-end`
+  - Java 11
+  - Spring Boot 2.4.5
+  - Maven
+  - Spring Data JPA
+  - MariaDB
+  - Spring Security
+  - OAuth2 
+#### `Front-end`
+  - JSP
 
-<!-- JSP 템플릿 엔진 -->
-<dependency>
-	<groupId>org.apache.tomcat</groupId>
-	<artifactId>tomcat-jasper</artifactId>
-	<version>9.0.43</version>
-</dependency>
+</br>
 
-<!-- JSTL -->
-<dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>jstl</artifactId>
-</dependency>
-```
+## 3. ERD 설계
+![]()
+(첨부예정)
 
-### 데이터베이스
 
-```sql
-create user 'cos'@'%' identified by 'cos1234';
-GRANT ALL PRIVILEGES ON *.* TO 'cos'@'%';
-create database photogram;
-```
+## 4. 핵심 기능
+인스타그램이라는 SNS를 클론코딩하여<br>
+게시글 등록/삭제/수정 기능과 구독 서비스 기능 그리고 스프링 시큐리티를 사용한 로그인 기능을 구현했습니다.<br>
+메시지 및 알림 기능은 추후 구현 예정입니다.
 
-### yml 설정
+### 4.1. 전체 흐름
+![image](https://user-images.githubusercontent.com/45502553/134457600-1e0de60f-2927-40e9-8443-7a2154a2bd45.png)
 
-```yml
-server:
-  port: 8080
-  servlet:
-    context-path: /
-    encoding:
-      charset: utf-8
-      enabled: true
-    
-spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-      
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/costa?serverTimezone=Asia/Seoul
-    username: costa
-    password: costa1234
-    
-  jpa:
-    open-in-view: true
-    hibernate:
-      ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true
-      
-  servlet:
-    multipart:
-      enabled: true
-      max-file-size: 2MB
+### 4.2. 로그인 및 회원가입
+![image](https://user-images.githubusercontent.com/45502553/134455832-68abdb7e-6c5a-4fc4-b685-857c435a644f.png)<br>
+![image](https://user-images.githubusercontent.com/45502553/134455853-9d26cdcc-f495-4cdf-8f41-5c34d60d0cd9.png)
 
-  security:
-    user:
-      name: test
-      password: 1234   
 
-file:
-  path: C:/src/springbootwork-sts/upload/
-```
+### 4.3. 프로필 페이지
+- 사진 업로드
+- 프로필 변경
+- 회원정보 변경
+- 구독/구독 취소
+- 구독리스트 조회
 
-### 태그라이브러리
+![](https://images.velog.io/images/jyo925/post/9a32e73f-76c6-4ef3-a626-00940bd661f5/image.png)<br>
+![](https://images.velog.io/images/jyo925/post/5e2f0c29-8716-46b3-90a5-b690e672f297/image.png)<br>
+![](https://images.velog.io/images/jyo925/post/44042597-3377-46bc-8058-14eb7ecb2633/image.png)<br>
 
-```jsp
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-```
+### 4.4. 인기게시글 페이지
+- 좋아요가 많은 순의 게시글 조회
+
+![](https://images.velog.io/images/jyo925/post/a3f35b31-29ce-420c-9b4f-94ca77d6d580/image.png)
+
+### 4.5. 스토리 페이지
+- 구독한 사람들의 업로드된 게시물을 조회
+- 좋아요/좋아요 취소
+- 댓글 등록/삭제
+
+![](https://images.velog.io/images/jyo925/post/0db63abe-49a0-4c39-9a4f-e7739e6786f2/image.png)
+</br>
